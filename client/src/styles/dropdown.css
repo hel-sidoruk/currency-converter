@@ -1,0 +1,29 @@
+.dropdown {
+  position: relative;
+}
+
+.dropdown__list {
+  position: absolute;
+  max-height: 200px;
+  display: none;
+  overflow-y: auto;
+  background-color: #fff;
+}
+
+.dropdown__list--active {
+  display: block;
+}
+
+.dropdown__item {
+  cursor: pointer;
+  padding: 10px;
+}
+
+.dropdown__item:not(:last-child) {
+  border-bottom: 1px solid #ddd;
+}
+
+.dropdown__item:hover {
+  background-color: #14509c;
+  color: #fff;
+}

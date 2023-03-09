@@ -1,9 +1,11 @@
 import React, { useEffect } from 'react';
-import { AddCurrencyButton, Currencies } from '.';
+import { Currencies } from '.';
 import useActions from '../hooks/useActions';
+import { Dropdown } from './Dropdown';
 
 export const Layout = () => {
   const { getCurrencies } = useActions();
+
   useEffect(() => {
     getCurrencies();
   }, []);
@@ -14,10 +16,10 @@ export const Layout = () => {
       <h3>По курсу НБ РБ</h3>
       <p>
         Официальный курс, устанавливаемый Национальным банком Республики Беларусь на{' '}
-        {new Date(Date.now()).toLocaleDateString()}
+        {new Date(Date.now()).toISOString()}
       </p>
       <Currencies />
-      <AddCurrencyButton />
+      <Dropdown />
     </div>
   );
 };
