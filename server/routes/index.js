@@ -1,6 +1,8 @@
+const CurrencyController = require('../controllers/CurrencyController');
+
 const Router = require('express').Router;
 const router = new Router();
 
-router.get('/', (req, res) => res.json('Hello'));
+router.get('/', CurrencyController.getAll);
 
 module.exports = router;
