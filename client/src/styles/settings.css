@@ -60,12 +60,29 @@ input {
 
 #root {
   height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .container {
   max-width: 600px;
-  background-color: #ebf6fb;
+  padding: 20px;
+  margin: auto;
+}
+
+.input {
+  background-color: #fff;
+  outline: none;
+  font-size: 16px;
+  height: 40px;
+  flex-grow: 1;
+  padding: 10px;
+  border: 1px solid #b4c6d2;
+  transition: border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+}
+.input:hover {
+  border-color: #a3b8c2;
+  box-shadow: inset 0 1px 3px rgb(77 131 158 / 50%);
+}
+.input:focus {
+  box-shadow: inset 0 1px 1px rgb(0 0 0 / 8%), 0 0 8px rgb(102 175 233 / 60%);
+  border-color: #66afe9;
 }

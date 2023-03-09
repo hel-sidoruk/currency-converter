@@ -16,10 +16,12 @@ export const Layout = () => {
       <h3>По курсу НБ РБ</h3>
       <p>
         Официальный курс, устанавливаемый Национальным банком Республики Беларусь на{' '}
-        {new Date(Date.now()).toISOString()}
+        {new Date(Date.now()).toLocaleDateString()}
       </p>
-      <Currencies />
-      <Dropdown />
+      <div className="currencies">
+        <Currencies />
+        <Dropdown />
+      </div>
     </div>
   );
 };
