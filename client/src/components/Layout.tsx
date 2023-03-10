@@ -7,7 +7,7 @@ export const Layout = () => {
   const { getCurrencies } = useActions();
 
   useEffect(() => {
-    getCurrencies();
+    getCurrencies('USD', '1');
   }, []);
 
   return (

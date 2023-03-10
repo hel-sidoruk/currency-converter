@@ -1,16 +1,21 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import useActions from '../hooks/useActions';
 import { CurrencyInfo } from '../types';
 
 export const CurrencyItem = ({ item }: { item: CurrencyInfo }) => {
-  const { removeCurrency } = useActions();
-  const [value, setValue] = useState((+item.count.toFixed(4)).toString());
+  const { removeCurrency, getCurrencies } = useActions();
+  const [value, setValue] = useState('');
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
-    if (!newValue[newValue.length - 1].match(/(\d|\.)/)) return;
+    if (newValue && !newValue[newValue.length - 1].match(/(\d|\.)/)) return;
     setValue(e.target.value);
+    if (!newValue.endsWith('.')) getCurrencies(item.Cur_Abbreviation, newValue);
   };
+
+  useEffect(() => {
+    setValue((+item.count.toFixed(4)).toString());
+  }, [item]);
 
   return (
     <li className="currencies__item">

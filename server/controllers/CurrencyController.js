@@ -1,9 +1,10 @@
 const { default: axios } = require('axios');
 
-const CURRENCY = 'USD';
-
 class CurrencyController {
   async getAll(req, res) {
+    const cur = req.query.cur.split('-')[0];
+    const curValue = +req.query.cur.split('-')[1];
+
     const { data } = await axios.get(process.env.API_URL);
     const currencies = [
       {
@@ -16,10 +17,12 @@ class CurrencyController {
       },
       ...data,
     ];
-    const usd = currencies.find((el) => el.Cur_Abbreviation === CURRENCY);
+    const currency = currencies.find((el) => el.Cur_Abbreviation === cur);
     currencies.forEach((item) => {
       item.count =
-        (usd.Cur_OfficialRate / item.Cur_OfficialRate) * item.Cur_Scale;
+        (currency.Cur_OfficialRate / item.Cur_OfficialRate) *
+        item.Cur_Scale *
+        curValue;
     });
     return res.json(currencies);
   }
