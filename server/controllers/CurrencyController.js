@@ -1,22 +1,13 @@
-const { default: axios } = require('axios');
+const { BYN, getCurrencies } = require('../utils');
 
 class CurrencyController {
   async getAll(req, res) {
     const cur = req.query.cur.split('-')[0];
     const curValue = +req.query.cur.split('-')[1];
 
-    const { data } = await axios.get(process.env.API_URL);
-    const currencies = [
-      {
-        Cur_ID: 100,
-        Cur_Abbreviation: 'BYN',
-        Cur_Name: 'белорусский рубль',
-        Cur_OfficialRate: 1,
-        Cur_Scale: 1,
-        Date: new Date(Date.now()).toISOString(),
-      },
-      ...data,
-    ];
+    const data = await getCurrencies();
+    const currencies = [BYN, ...data];
+
     const currency = currencies.find((el) => el.Cur_Abbreviation === cur);
     currencies.forEach((item) => {
       item.count =

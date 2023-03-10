@@ -11,6 +11,12 @@ export function getCurrencies(cur: string, value: string): ThunkActionType {
   };
 }
 
+export function setChanging(id: number | null): ThunkActionType {
+  return (dispatch: Dispatch<CurrencyAction>) => {
+    dispatch({ type: CurrenciesActionTypes.SET_CHANGING, changing: id });
+  };
+}
+
 export function addCurrency(id: number): ThunkActionType {
   return (dispatch: Dispatch<CurrencyAction>, getState) => {
     const { showed } = getState().currencies;
