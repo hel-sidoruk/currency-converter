@@ -1,34 +1,4 @@
-import { CurrencyInfo } from '../../types';
-
-export enum CurrenciesActionTypes {
-  GET_CURRENCIES = 'GET_CURRENCIES',
-  ADD_CURRENCY = 'ADD_CURRENCY',
-  REMOVE_CURRENCY = 'REMOVE_CURRENCY',
-  SET_CHANGING = 'SET_CHANGING',
-}
-
-export interface CurrenciesState {
-  currencies: CurrencyInfo[];
-  showed: number[];
-  changing: number | null;
-}
-
-interface GetCurrenciesAction {
-  type: CurrenciesActionTypes.GET_CURRENCIES;
-  data: CurrencyInfo[];
-}
-
-interface AddCurrencyAction {
-  type: CurrenciesActionTypes.ADD_CURRENCY | CurrenciesActionTypes.REMOVE_CURRENCY;
-  showed: number[];
-}
-
-interface SetChangingAction {
-  type: CurrenciesActionTypes.SET_CHANGING;
-  changing: number | null;
-}
-
-export type CurrencyAction = GetCurrenciesAction | AddCurrencyAction | SetChangingAction;
+import { CurrenciesActionTypes, CurrenciesState, CurrencyAction } from '../../types';
 
 const initialState: CurrenciesState = {
   currencies: [],

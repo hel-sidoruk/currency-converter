@@ -2,6 +2,8 @@ import { Action } from 'redux';
 import { ThunkAction } from 'redux-thunk';
 import { RootState } from '../store/reducers';
 
+export type ThunkActionType = ThunkAction<void, RootState, unknown, Action<string>>;
+
 export interface CurrencyInfo {
   Cur_Abbreviation: string;
   Cur_ID: number;
@@ -9,4 +11,32 @@ export interface CurrencyInfo {
   count: number;
 }
 
-export type ThunkActionType = ThunkAction<void, RootState, unknown, Action<string>>;
+export enum CurrenciesActionTypes {
+  GET_CURRENCIES = 'GET_CURRENCIES',
+  ADD_CURRENCY = 'ADD_CURRENCY',
+  REMOVE_CURRENCY = 'REMOVE_CURRENCY',
+  SET_CHANGING = 'SET_CHANGING',
+}
+
+export interface CurrenciesState {
+  currencies: CurrencyInfo[];
+  showed: number[];
+  changing: number | null;
+}
+
+interface GetCurrenciesAction {
+  type: CurrenciesActionTypes.GET_CURRENCIES;
+  data: CurrencyInfo[];
+}
+
+interface AddCurrencyAction {
+  type: CurrenciesActionTypes.ADD_CURRENCY | CurrenciesActionTypes.REMOVE_CURRENCY;
+  showed: number[];
+}
+
+interface SetChangingAction {
+  type: CurrenciesActionTypes.SET_CHANGING;
+  changing: number | null;
+}
+
+export type CurrencyAction = GetCurrenciesAction | AddCurrencyAction | SetChangingAction;

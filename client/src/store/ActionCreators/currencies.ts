@@ -1,6 +1,6 @@
 import { Dispatch } from 'redux';
 import { ThunkActionType } from '../../types';
-import { CurrenciesActionTypes, CurrencyAction } from '../reducers/currenciesReducer';
+import { CurrenciesActionTypes, CurrencyAction } from '../../types';
 
 export function getCurrencies(cur: string, value: string): ThunkActionType {
   return async (dispatch: Dispatch<CurrencyAction>) => {
