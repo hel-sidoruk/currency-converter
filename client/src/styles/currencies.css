@@ -1,8 +1,12 @@
 .currencies {
   padding: 20px;
   padding-right: 40px;
-  margin-top: 20px;
+  margin-top: 16px;
   background-color: #ebf6fb;
+}
+
+.currencies__item {
+  position: relative;
 }
 
 .currencies__item:not(:last-child) {
@@ -30,4 +34,25 @@
   text-align: right;
   color: #999;
   font-size: 14px;
+}
+.currencies__button {
+  position: absolute;
+  right: -25px;
+  top: 12%;
+  width: 24px;
+  height: 24px;
+}
+.currencies__button::after,
+.currencies__button::before {
+  content: "";
+  position: absolute;
+  width: 14px;
+  height: 1px;
+  background-color: #999;
+}
+.currencies__button::after {
+  transform: rotate(-45deg);
+}
+.currencies__button::before {
+  transform: rotate(45deg);
 }

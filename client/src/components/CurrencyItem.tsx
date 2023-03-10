@@ -4,9 +4,11 @@ import { CurrencyInfo } from '../types';
 
 export const CurrencyItem = ({ item }: { item: CurrencyInfo }) => {
   const { removeCurrency } = useActions();
+  const [value, setValue] = useState((+item.count.toFixed(4)).toString());
 
-  const [value, setValue] = useState(item.Cur_OfficialRate.toString());
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const newValue = e.target.value;
+    if (!newValue[newValue.length - 1].match(/(\d|\.)/)) return;
     setValue(e.target.value);
   };
 
@@ -17,9 +19,7 @@ export const CurrencyItem = ({ item }: { item: CurrencyInfo }) => {
         <input className="input" type="text" value={value} onChange={onChange} />
       </div>
       <p className="currencies__name">{item.Cur_Name}</p>
-      {/* <button className="currencies__button" onClick={() => removeCurrency(item.Cur_ID)}>
-        Remove
-      </button> */}
+      <button className="currencies__button" onClick={() => removeCurrency(item.Cur_ID)}></button>
     </li>
   );
 };

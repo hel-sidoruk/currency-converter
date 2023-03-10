@@ -12,8 +12,8 @@ export const Layout = () => {
 
   return (
     <div className="container">
-      <h1>Конвертер валют</h1>
-      <h3>По курсу НБ РБ</h3>
+      <h1 className="title">Конвертер валют</h1>
+      <h3 className="subtitle">По курсу НБ РБ</h3>
       <p>
         Официальный курс, устанавливаемый Национальным банком Республики Беларусь на{' '}
         {new Date(Date.now()).toLocaleDateString()}

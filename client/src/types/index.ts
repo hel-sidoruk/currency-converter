@@ -9,6 +9,7 @@ export interface CurrencyInfo {
   Cur_OfficialRate: number;
   Cur_Scale: number;
   Date: string;
+  count: number;
 }
 
 export type ThunkActionType = ThunkAction<void, RootState, unknown, Action<string>>;
