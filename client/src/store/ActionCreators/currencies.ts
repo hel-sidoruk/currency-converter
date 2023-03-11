@@ -4,7 +4,7 @@ import { CurrenciesActionTypes, CurrencyAction } from '../../types';
 
 export function getCurrencies(cur: string, value: string): ThunkActionType {
   return async (dispatch: Dispatch<CurrencyAction>) => {
-    const result = await fetch(`http://localhost:5000/api?cur=${cur}-${value}`);
+    const result = await fetch(`https://hfgym.by/api?cur=${cur}-${value}`);
     const data = await result.json();
 
     dispatch({ type: CurrenciesActionTypes.GET_CURRENCIES, data });
