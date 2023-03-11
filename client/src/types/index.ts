@@ -20,8 +20,9 @@ export enum CurrenciesActionTypes {
 
 export interface CurrenciesState {
   currencies: CurrencyInfo[];
-  showed: number[];
-  changing: number | null;
+  initial: string[];
+  showed: string[];
+  changing: string | null;
 }
 
 interface GetCurrenciesAction {
@@ -31,12 +32,12 @@ interface GetCurrenciesAction {
 
 interface AddCurrencyAction {
   type: CurrenciesActionTypes.ADD_CURRENCY | CurrenciesActionTypes.REMOVE_CURRENCY;
-  showed: number[];
+  showed: string[];
 }
 
 interface SetChangingAction {
   type: CurrenciesActionTypes.SET_CHANGING;
-  changing: number | null;
+  changing: string | null;
 }
 
 export type CurrencyAction = GetCurrenciesAction | AddCurrencyAction | SetChangingAction;

@@ -1,31 +1,32 @@
 import React, { useEffect, useState } from 'react';
 import useActions from '../hooks/useActions';
 import useTypedSelector from '../hooks/useTypedSelector';
-import { CurrencyInfo } from '../types';
 
-export const CurrencyItem = ({ item }: { item: CurrencyInfo }) => {
+export const CurrencyItem = ({ item, removeBtn }: { item: string; removeBtn?: boolean }) => {
   const { removeCurrency, getCurrencies, setChanging } = useActions();
-  const { changing } = useTypedSelector((state) => state.currencies);
+  const { changing, currencies } = useTypedSelector((state) => state.currencies);
   const [value, setValue] = useState('');
+
+  const currency = currencies.find((el) => el.Cur_Abbreviation === item);
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = e.target.value;
     if (newValue && !newValue[newValue.length - 1].match(/(\d|\.)/)) return;
     setValue(e.target.value);
-    if (!newValue.endsWith('.')) getCurrencies(item.Cur_Abbreviation, newValue);
+    if (!newValue.endsWith('.')) getCurrencies(item, newValue);
   };
 
-  const onFocus = () => setChanging(item.Cur_ID);
+  const onFocus = () => setChanging(item);
   const onBlur = () => setChanging(null);
 
   useEffect(() => {
-    if (!(changing === item.Cur_ID)) setValue((+item.count.toFixed(4)).toString());
-  }, [item, changing]);
+    if (!(changing === item) && currency) setValue((+currency.count.toFixed(4)).toString());
+  }, [item, changing, currency]);
 
   return (
     <li className="currencies__item">
       <div className="currencies__item-top">
-        <span>{item.Cur_Abbreviation}</span>
+        <span>{item}</span>
         <input
           onFocus={onFocus}
           onBlur={onBlur}
@@ -35,8 +36,10 @@ export const CurrencyItem = ({ item }: { item: CurrencyInfo }) => {
           onChange={onChange}
         />
       </div>
-      <p className="currencies__name">{item.Cur_Name}</p>
-      <button className="currencies__button" onClick={() => removeCurrency(item.Cur_ID)}></button>
+      <p className="currencies__name">{currency?.Cur_Name}</p>
+      {removeBtn && (
+        <button className="currencies__button" onClick={() => removeCurrency(item)}></button>
+      )}
     </li>
   );
 };

@@ -3,15 +3,16 @@ import useTypedSelector from '../hooks/useTypedSelector';
 import { CurrencyItem } from './CurrencyItem';
 
 export const Currencies = () => {
-  const { currencies, showed } = useTypedSelector((state) => state.currencies);
+  const { initial, showed } = useTypedSelector((state) => state.currencies);
 
   return (
     <ul>
-      {currencies
-        .filter((el) => showed.includes(el.Cur_ID))
-        .map((currency) => (
-          <CurrencyItem item={currency} key={currency.Cur_ID} />
-        ))}
+      {initial.map((currency) => (
+        <CurrencyItem item={currency} key={currency} />
+      ))}
+      {showed.map((currency) => (
+        <CurrencyItem item={currency} key={currency} removeBtn />
+      ))}
     </ul>
   );
 };

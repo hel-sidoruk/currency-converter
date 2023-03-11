@@ -2,7 +2,8 @@ import { CurrenciesActionTypes, CurrenciesState, CurrencyAction } from '../../ty
 
 const initialState: CurrenciesState = {
   currencies: [],
-  showed: [431, 451, 456, 449, 452, 100],
+  initial: ['USD', 'EUR', 'BYN', 'RUB', 'UAH', 'PLN'],
+  showed: [],
   changing: null,
 };
 

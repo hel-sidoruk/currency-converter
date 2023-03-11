@@ -11,20 +11,20 @@ export function getCurrencies(cur: string, value: string): ThunkActionType {
   };
 }
 
-export function setChanging(id: number | null): ThunkActionType {
+export function setChanging(id: string | null): ThunkActionType {
   return (dispatch: Dispatch<CurrencyAction>) => {
     dispatch({ type: CurrenciesActionTypes.SET_CHANGING, changing: id });
   };
 }
 
-export function addCurrency(id: number): ThunkActionType {
+export function addCurrency(id: string): ThunkActionType {
   return (dispatch: Dispatch<CurrencyAction>, getState) => {
     const { showed } = getState().currencies;
     dispatch({ type: CurrenciesActionTypes.ADD_CURRENCY, showed: [...showed, id] });
   };
 }
 
-export function removeCurrency(id: number): ThunkActionType {
+export function removeCurrency(id: string): ThunkActionType {
   return (dispatch: Dispatch<CurrencyAction>, getState) => {
     const { showed } = getState().currencies;
     dispatch({
