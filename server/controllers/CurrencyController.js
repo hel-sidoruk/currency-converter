@@ -11,7 +11,9 @@ class CurrencyController {
     const currency = currencies.find((el) => el.Cur_Abbreviation === cur);
     currencies.forEach((item) => {
       item.count =
-        (currency.Cur_OfficialRate / item.Cur_OfficialRate) *
+        (currency.Cur_OfficialRate /
+          currency.Cur_Scale /
+          item.Cur_OfficialRate) *
         item.Cur_Scale *
         curValue;
     });
