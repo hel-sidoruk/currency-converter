@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import { Currencies } from '.';
 import useActions from '../hooks/useActions';
+import { Currencies } from './Currencies';
 import { Dropdown } from './Dropdown';
 
 export const Layout = () => {
